@@ -1,13 +1,15 @@
-import { GraduationCap, HandCoins, Trophy } from "lucide-react";
+import { Code2, GraduationCap, HandCoins, Trophy, Users } from "lucide-react";
 import { achievements, type Achievement } from "@/data/content";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TiltCard } from "@/components/TiltCard";
 
 const icons: Record<Achievement["icon"], typeof GraduationCap> = {
+  code: Code2,
   graduationCap: GraduationCap,
   trophy: Trophy,
   handCoins: HandCoins,
+  users: Users,
 };
 
 export function Achievements() {
@@ -15,7 +17,7 @@ export function Achievements() {
     <section id="achievements" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
       <SectionHeading eyebrow="What I've delivered" title="Achievements & Responsibilities" />
 
-      <RevealGroup className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <RevealGroup className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {achievements.map((item) => {
           const Icon = icons[item.icon];
           return (

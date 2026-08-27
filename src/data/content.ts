@@ -49,6 +49,7 @@ export const hero = {
   ],
   stats: [
     { value: "150+", label: "DSA problems solved" },
+    { value: "97.7%ile", label: "JEE Mains 2022" },
     { value: "3", label: "Companies & teams" },
     { value: "₹20L+", label: "Sponsorship raised" },
   ],
@@ -93,6 +94,19 @@ export const experience: ExperienceItem[] = [
       "Streamed recorded lectures via VdoCipher DRM, enhancing engagement for 80%+ of enrolled learners.",
       "Integrated secure authentication using Google OAuth 2.0, JWT, and session handling, increasing signup/login success rate by 35%.",
       "Enabled payments via Razorpay and purchase workflows for course access and post-purchase emails using Nodemailer.",
+    ],
+  },
+  {
+    role: "Teaching Assistant",
+    company: "The LNM Institute of Information Technology",
+    location: "Jaipur, Rajasthan · On-site · Part-time",
+    period: "January 2025 — April 2025",
+    certificateUrl: "#",
+    tech: ["Internet of Things (IoT)", "Arduino IDE", "ESP8266", "Programming", "Circuit Design", "Mentoring"],
+    points: [
+      "Mentored over 80 students in IoT development by offering personalized support, which helped improve their lab performance.",
+      "Helped design and review more than 10 lab assignments, focusing on building students' problem-solving abilities.",
+      "Led 12+ hands-on sessions using tools like Arduino, ESP8266, DHT22, and HiveMQ, while also troubleshooting technical issues to keep the sessions running smoothly.",
     ],
   },
   {
@@ -156,21 +170,27 @@ export type Achievement = {
   stat: string;
   title: string;
   description: string;
-  icon: "graduationCap" | "trophy" | "handCoins";
+  icon: "code" | "graduationCap" | "trophy" | "handCoins" | "users";
 };
 
 export const achievements: Achievement[] = [
   {
     stat: "150+",
-    title: "Competitive Programming & Academics",
-    description: "Coding problems solved, plus a 97.7 percentile in JEE Mains 2022.",
+    title: "Competitive Programming",
+    description: "Coding problems solved across various platforms.",
+    icon: "code",
+  },
+  {
+    stat: "97.7%ile",
+    title: "JEE Mains 2022",
+    description: "Percentile secured in the JEE Mains 2022 entrance exam.",
     icon: "graduationCap",
   },
   {
-    stat: "12+",
-    title: "Teaching Assistant, IoT Lab",
-    description: "Labs conducted using Arduino, ESP8266, DHT22, and HiveMQ.",
-    icon: "trophy",
+    stat: "Alumni",
+    title: "Senior Member, LNMIIT Alumni Association",
+    description: "Recognized as a Senior Member of the LNMIIT Alumni Association.",
+    icon: "users",
   },
   {
     stat: "₹20L+",
