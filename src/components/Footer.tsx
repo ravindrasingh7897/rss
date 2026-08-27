@@ -4,6 +4,7 @@ import type { IconType } from "react-icons";
 import { site } from "@/data/content";
 import { Reveal } from "@/components/Reveal";
 import { MagneticButton } from "@/components/MagneticButton";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const socialIcons: Record<string, IconType> = {
   GitHub: FaGithub,
@@ -15,7 +16,9 @@ const socialIcons: Record<string, IconType> = {
 export function Footer() {
   return (
     <footer id="contact" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
-      <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-card px-8 py-16 text-center sm:px-16">
+      <SectionHeading eyebrow="Get in touch" title="Contact" />
+
+      <Reveal className="relative mt-16 overflow-hidden rounded-3xl border border-border bg-card px-8 py-16 text-center sm:px-16">
         <div
           className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/20 blur-[100px]"
           aria-hidden

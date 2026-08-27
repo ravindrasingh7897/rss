@@ -8,6 +8,8 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const SCROLL_OFFSET = 50;
+
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);
   const reduced = usePrefersReducedMotion();
@@ -28,7 +30,10 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      lenisRef.current?.lenis?.scrollTo(target as HTMLElement, { offset: -80, duration: 1.2 });
+      lenisRef.current?.lenis?.scrollTo(target as HTMLElement, {
+        offset: SCROLL_OFFSET,
+        duration: 1.2,
+      });
     }
     document.addEventListener("click", onClick);
 

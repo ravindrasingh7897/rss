@@ -1,62 +1,69 @@
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/data/content";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import { TiltCard } from "@/components/TiltCard";
+import { ProjectCard } from "@/components/ui/project-card";
 
 export function Projects() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  function scrollByCard(direction: 1 | -1) {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector("[data-project-card]") as HTMLElement | null;
+    const distance = (card?.offsetWidth ?? 360) + 24;
+    el.scrollBy({ left: direction * distance, behavior: "smooth" });
+  }
+
   return (
     <section id="projects" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
-      <SectionHeading eyebrow="Selected work" title="Projects" />
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading eyebrow="Selected work" title="Projects" />
 
-      <div className="mt-16 space-y-6">
-        {projects.map((project) => (
-          <Reveal key={project.title}>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              data-cursor-hover
-              className="block cursor-pointer"
-            >
-              <TiltCard className="p-6 sm:p-8">
-                <div className="flex flex-col gap-6 md:flex-row md:items-center">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                        {project.label}
-                      </span>
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-foreground transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                        <ArrowUpRight
-                          size={18}
-                          className="transition-transform group-hover:rotate-45"
-                        />
-                      </div>
-                    </div>
-                    <h3 className="mt-5 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                      {project.title}
-                    </h3>
-                    <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-xl border border-border md:w-2/5">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(min-width: 768px) 40vw, 100vw"
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </TiltCard>
-            </a>
-          </Reveal>
-        ))}
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Scroll projects left"
+            data-cursor-hover
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Scroll projects right"
+            data-cursor-hover
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
+
+      <Reveal>
+        <div
+          ref={scrollerRef}
+          className="mt-16 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden"
+        >
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              data-project-card
+              label={project.label}
+              title={project.title}
+              description={project.description}
+              imgSrc={project.image}
+              link={project.link}
+              className="w-75 shrink-0 snap-start sm:w-90 md:w-100"
+            />
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
