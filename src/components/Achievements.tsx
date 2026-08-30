@@ -11,7 +11,7 @@ const carouselItems = achievements.map((item, index) => ({
 
 export function Achievements() {
   return (
-    <section id="achievements" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
+    <section id="achievements" className="relative mx-auto max-w-6xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-36">
       <SectionHeading eyebrow="What I've delivered" title="Achievements & Responsibilities" />
 
       <div className="mt-16 flex justify-center">
