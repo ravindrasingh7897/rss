@@ -14,7 +14,7 @@ function clamp(n: number, min: number, max: number) {
 }
 
 const pillClassName =
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-card/80 backdrop-blur px-4 py-[0.3em] mx-[0.2em] mb-[0.4em] text-[13px] text-foreground transition-colors duration-200 hover:bg-accent hover:text-accent-foreground sm:px-5 sm:text-[15px]";
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-card/80 backdrop-blur px-4 py-[0.3em] mx-[0.2em] mb-[0.4em] text-[13px] text-foreground transition-colors duration-200 hover:border-accent hover:text-accent sm:px-5 sm:text-[15px]";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -247,24 +247,11 @@ export function Hero() {
           e.preventDefault();
           navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
         }}
-        className="group absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:block"
+        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
         style={{ left: "91.5%", top: "86%" }}
       >
-        <motion.span
-          className="relative flex h-9 w-9 items-center justify-center rounded-full border border-accent/60 bg-background/40 backdrop-blur-sm"
-          style={{ boxShadow: "0 0 18px color-mix(in srgb, var(--color-accent) 55%, transparent)" }}
-          animate={shouldReduceMotion ? undefined : { scale: [1, 1.12, 1] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.25 }}
-        >
-          <Sparkles size={16} className="text-accent" />
-          {!shouldReduceMotion && (
-            <span className="absolute inset-0 rounded-full border border-accent/40 animate-ping" />
-          )}
-        </motion.span>
-        <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-border bg-card/95 px-2 py-1 text-xs text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          Gallery
-        </span>
+        <Sparkles size={14} />
+        Gallery
       </Link>
     </section>
   );

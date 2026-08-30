@@ -5,15 +5,15 @@ import { Timeline } from "@/components/ui/timeline";
 
 export function Experience() {
   const data = experience.map((item) => ({
-    title: item.company,
+    title: item.period,
     content: (
-      <div key={item.company}>
+      <div key={item.company} className="rounded-2xl border border-border bg-card/40 p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-foreground md:text-base">
-              {item.role} <span className="font-normal text-muted-foreground">· {item.location}</span>
+            <h4 className="text-lg font-semibold text-foreground md:text-xl">{item.company}</h4>
+            <p className="mt-1 text-sm text-muted-foreground md:text-base">
+              {item.role} · {item.location}
             </p>
-            <p className="mt-1 font-mono text-xs text-muted-foreground">{item.period}</p>
           </div>
 
           <a
@@ -30,8 +30,11 @@ export function Experience() {
 
         <ul className="mt-4 space-y-2">
           {item.points.map((point) => (
-            <li key={point} className="flex gap-2.5 text-sm text-muted-foreground sm:text-base">
-              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+            <li
+              key={point}
+              className="group flex gap-2.5 rounded-lg px-2 py-1 -mx-2 text-sm text-muted-foreground transition-colors duration-200 hover:bg-muted hover:text-foreground sm:text-base"
+            >
+              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150" />
               {point}
             </li>
           ))}

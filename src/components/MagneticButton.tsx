@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ export function MagneticButton({
   href,
   onClick,
   strength = 0.4,
+  radius = 70,
   ...rest
 }: {
   children: ReactNode;
@@ -18,22 +19,35 @@ export function MagneticButton({
   href?: string;
   onClick?: () => void;
   strength?: number;
+  radius?: number;
   [key: string]: unknown;
 }) {
   const ref = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
 
-  function handleMouseMove(e: React.MouseEvent) {
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width / 2);
-    const y = e.clientY - (rect.top + rect.height / 2);
-    gsap.to(el, { x: x * strength, y: y * strength, duration: 0.4, ease: "power3.out" });
-  }
 
-  function handleMouseLeave() {
-    gsap.to(ref.current, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
-  }
+    function onMove(e: MouseEvent) {
+      const rect = el!.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const maxDistance = Math.max(rect.width, rect.height) / 2 + radius;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance < maxDistance) {
+        const pull = (1 - distance / maxDistance) * strength;
+        gsap.to(el, { x: dx * pull, y: dy * pull, duration: 0.4, ease: "power3.out" });
+      } else {
+        gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+      }
+    }
+
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [strength, radius]);
 
   const Component = (href ? "a" : "button") as "a";
 
@@ -42,8 +56,6 @@ export function MagneticButton({
       ref={ref}
       href={href}
       onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       data-cursor-hover
       className={cn("inline-flex will-change-transform", className)}
       {...rest}

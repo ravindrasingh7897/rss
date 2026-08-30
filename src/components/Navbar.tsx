@@ -72,8 +72,8 @@ export function Navbar() {
             const linkClassName = cn(
               "relative z-10 block px-4 py-2 text-sm rounded-full transition-colors cursor-pointer",
               active === item.href
-                ? "text-accent-foreground"
-                : "text-muted-foreground hover:text-foreground"
+                ? "text-accent"
+                : "text-muted-foreground hover:text-accent"
             );
 
             return (
@@ -83,14 +83,14 @@ export function Navbar() {
                     {item.label}
                   </Link>
                 ) : (
-                  <a href={item.href} data-cursor-hover className={linkClassName}>
+                  <MagneticButton href={item.href} strength={0.5} radius={40} className={linkClassName}>
                     {item.label}
-                  </a>
+                  </MagneticButton>
                 )}
                 {active === item.href && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-accent"
+                    className="absolute inset-0 rounded-full border border-accent bg-transparent"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -99,12 +99,13 @@ export function Navbar() {
           })}
         </ul>
 
-        <MagneticButton
+        <a
           href={`mailto:${site.email}`}
+          data-cursor-hover
           className="hidden md:inline-flex items-center rounded-full border border-border px-4 py-2 text-sm text-foreground hover:border-accent hover:text-accent"
         >
           Say hello
-        </MagneticButton>
+        </a>
 
         <button
           aria-label="Toggle menu"

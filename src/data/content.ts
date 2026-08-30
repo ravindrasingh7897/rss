@@ -44,7 +44,6 @@ export const hero = {
   pills: [
     { label: "See my work", href: "#projects" },
     { label: "View achievements", href: "#achievements" },
-    { label: "Check the gallery", href: "/gallery" },
     { label: "Let's talk", href: "#contact" },
   ],
   stats: [
@@ -72,7 +71,7 @@ export const experience: ExperienceItem[] = [
     role: "SDE",
     company: "KuKi Solutions",
     location: "On-Site",
-    period: "November 2025 — Present",
+    period: "Nov 2025 — Present",
     certificateUrl: "#",
     tech: ["Next.js", "React", "FastAPI", "Celery", "Redis", "MySQL", "MongoDB", "Azure OpenAI", "Gemini"],
     points: [
@@ -86,7 +85,7 @@ export const experience: ExperienceItem[] = [
     role: "Tech Lead",
     company: "SkillsOn",
     location: "Remote",
-    period: "March 2025 — August 2025",
+    period: "Mar 2025 — Aug 2025",
     certificateUrl: "#",
     tech: ["Vercel", "DigitalOcean", "Cloudinary", "VdoCipher", "Google OAuth", "Razorpay", "Nodemailer"],
     points: [
@@ -100,7 +99,7 @@ export const experience: ExperienceItem[] = [
     role: "Teaching Assistant",
     company: "The LNM Institute of Information Technology",
     location: "Jaipur, Rajasthan · On-site · Part-time",
-    period: "January 2025 — April 2025",
+    period: "Jan 2025 — Apr 2025",
     certificateUrl: "#",
     tech: ["Internet of Things (IoT)", "Arduino IDE", "ESP8266", "Programming", "Circuit Design", "Mentoring"],
     points: [
@@ -113,7 +112,7 @@ export const experience: ExperienceItem[] = [
     role: "Front-end Developer",
     company: "CoreTeams Softech Pvt. Ltd",
     location: "Hybrid",
-    period: "June 2024 — July 2024",
+    period: "Jun 2024 — Jul 2024",
     certificateUrl: "#",
     tech: ["React.js", "Tailwind CSS", "Multer", "MongoDB", "jsPDF"],
     points: [
@@ -197,6 +196,19 @@ export const achievements: Achievement[] = [
     title: "Sponsorship Lead, Plinth",
     description: "Raised in sponsorships; managed guests including Sandeep Jain, Mohd. Irfan, and Sunburn.",
     icon: "handCoins",
+  },
+  // Placeholders — swap these for real achievements.
+  {
+    stat: "TBD",
+    title: "Placeholder Achievement",
+    description: "Replace this with a real achievement or responsibility.",
+    icon: "trophy",
+  },
+  {
+    stat: "TBD",
+    title: "Placeholder Achievement",
+    description: "Replace this with a real achievement or responsibility.",
+    icon: "code",
   },
 ];
 

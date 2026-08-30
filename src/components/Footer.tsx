@@ -18,7 +18,7 @@ export function Footer() {
     <footer id="contact" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
       <SectionHeading eyebrow="Get in touch" title="Contact" />
 
-      <Reveal className="relative mt-16 overflow-hidden rounded-3xl border border-border bg-card px-8 py-16 text-center sm:px-16">
+      <Reveal className="relative mt-16 overflow-hidden rounded-3xl border border-border bg-card px-8 pb-10 pt-16 text-center sm:px-16">
         <div
           className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/20 blur-[100px]"
           aria-hidden
@@ -42,7 +42,7 @@ export function Footer() {
           />
         </MagneticButton>
 
-        <div className="mt-10 flex items-center justify-center gap-5">
+        <div className="mt-10 flex items-center justify-center gap-9">
           {site.socials.map((social) => {
             const Icon = socialIcons[social.label];
             return (
@@ -53,9 +53,9 @@ export function Footer() {
                 rel="noreferrer"
                 aria-label={social.label}
                 data-cursor-hover
-                className="text-muted-foreground transition-colors hover:text-accent cursor-pointer"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:text-accent"
               >
-                {Icon ? <Icon size={20} /> : social.label}
+                {Icon ? <Icon size={18} /> : social.label}
               </a>
             );
           })}

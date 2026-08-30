@@ -13,11 +13,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const el = ref.current;
+    if (!el) return;
+
+    const update = () => setHeight(el.getBoundingClientRect().height);
+    update();
+
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -36,7 +41,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-background">
                 <div className="h-4 w-4 rounded-full border border-accent/60 bg-accent/20" />
               </div>
-              <h3 className="hidden text-xl font-bold text-muted-foreground md:block md:pl-20 md:text-4xl">
+              <h3 className="hidden whitespace-nowrap text-xl font-bold text-muted-foreground md:block md:pl-20 md:text-2xl">
                 {item.title}
               </h3>
             </div>
