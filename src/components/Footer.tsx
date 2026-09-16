@@ -15,7 +15,7 @@ const socialIcons: Record<string, IconType> = {
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
+    <footer id="contact" className="relative mx-auto max-w-6xl px-6 pb-8 pt-28 sm:pb-10 sm:pt-36">
       <SectionHeading eyebrow="Get in touch" title="Contact" />
 
       <Reveal className="relative mt-16 overflow-hidden rounded-3xl border border-border bg-card px-8 pb-10 pt-16 text-center sm:px-16">

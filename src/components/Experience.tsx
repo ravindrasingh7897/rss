@@ -55,7 +55,7 @@ export function Experience() {
   }));
 
   return (
-    <section id="experience" className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
+    <section id="experience" className="relative mx-auto max-w-6xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-36">
       <SectionHeading eyebrow="Where I've worked" title="Experience" />
       <Timeline data={data} />
     </section>
