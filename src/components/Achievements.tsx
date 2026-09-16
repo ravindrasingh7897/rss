@@ -15,7 +15,7 @@ export function Achievements() {
       <SectionHeading eyebrow="What I've delivered" title="Achievements & Responsibilities" />
 
       <div className="mt-16 flex justify-center">
-        <CircularCarousel items={carouselItems} />
+        <CircularCarousel items={carouselItems} autoPlayInterval={2200} />
       </div>
     </section>
   );

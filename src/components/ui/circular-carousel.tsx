@@ -146,10 +146,10 @@ export function CircularCarousel({
                 aria-selected={isActive}
                 role="option"
                 className={cn(
-                  "absolute bottom-0 left-1/2 flex h-44 w-64 -translate-x-1/2 cursor-pointer flex-col items-start justify-between rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-shadow duration-300",
+                  "absolute bottom-0 left-1/2 flex h-44 w-64 -translate-x-1/2 cursor-pointer flex-col items-start justify-between rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-[box-shadow,border-color] duration-300",
                   isActive
-                    ? "shadow-[0_20px_60px_-12px_rgba(0,0,0,0.5)]"
-                    : "shadow-[0_8px_24px_-4px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.4)]",
+                    ? "shadow-[0_0_40px_-8px_color-mix(in_srgb,var(--color-accent)_45%,transparent)]"
+                    : "shadow-[0_8px_24px_-4px_rgba(0,0,0,0.3)] hover:border-accent/60 hover:shadow-[0_0_30px_-6px_color-mix(in_srgb,var(--color-accent)_50%,transparent)]",
                 )}
                 style={{ transformOrigin: "center center" }}
               >
