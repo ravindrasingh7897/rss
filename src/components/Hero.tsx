@@ -30,8 +30,6 @@ export function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  // Scrub the background video by horizontal mouse movement instead of
-  // playing it — the video acts as a filmstrip, not footage.
   useEffect(() => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
@@ -42,10 +40,6 @@ export function Hero() {
     let rafId: number;
     let watchdog: ReturnType<typeof setTimeout> | undefined;
 
-    // A `currentTime` write that the browser decides is a no-op (e.g. we're
-    // already clamped at 0 and keep trying to go further left) can silently
-    // never fire `seeked` — without this watchdog `seeking` gets stuck at
-    // `true` forever and the scrubber permanently stops responding.
     function armWatchdog() {
       clearTimeout(watchdog);
       watchdog = setTimeout(() => {
@@ -58,19 +52,12 @@ export function Hero() {
       seeking = false;
     }
 
-    // Absolute position mapping, not accumulated delta: the left edge of the
-    // screen is always frame 0, the right edge is always the last frame, so
-    // the centered pose in the footage lines up with the horizontal centre of
-    // the screen and scrubbing works symmetrically in both directions.
     function onMouseMove(e: MouseEvent) {
       if (!video || !video.duration) return;
       const ratio = clamp(e.clientX / window.innerWidth, 0, 1);
       targetTime = ratio * video.duration;
     }
 
-    // Seeks are applied at most once per frame instead of on every raw
-    // mousemove event — most video encoding can't keep up with a `currentTime`
-    // write on every pixel of mouse movement, which is what reads as freezing.
     function tick() {
       rafId = requestAnimationFrame(tick);
       if (!video || !video.duration || seeking) return;
@@ -99,7 +86,6 @@ export function Hero() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // Clipboard API unavailable — nothing to fall back to silently.
     }
   }
 
@@ -108,7 +94,6 @@ export function Hero() {
       id="top"
       className="relative flex h-screen flex-col justify-end overflow-hidden px-5 pb-12 sm:px-8 md:justify-center md:px-10 md:pb-0"
     >
-      {/* CSS space backdrop — always visible behind/around the video */}
       <div className="absolute inset-0 space-bg" aria-hidden>
         <div className="nebula-blob left-[-10%] top-[-10%] h-[45vw] w-[45vw] bg-emerald-500" aria-hidden />
         <div
@@ -130,7 +115,6 @@ export function Hero() {
         />
       )}
 
-      {/* Dark cyberpunk colour grade over the footage */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/90"
         aria-hidden
@@ -153,18 +137,22 @@ export function Hero() {
             {hero.introLines[1]}
           </p>
 
-          <p
-            className="mb-5 text-foreground sm:mb-6"
+          <div
+            className="relative mb-5 sm:mb-6"
             style={{
               fontSize: "clamp(18px, 4vw, 26px)",
               lineHeight: 1.35,
               fontWeight: 400,
-              minHeight: 54,
             }}
           >
-            {displayed}
-            {!done && <span className="typewriter-cursor" aria-hidden />}
-          </p>
+            <p aria-hidden className="invisible">
+              {hero.typewriter}
+            </p>
+            <p className="absolute inset-0 text-foreground">
+              {displayed}
+              {!done && <span className="typewriter-cursor" aria-hidden />}
+            </p>
+          </div>
 
           <div
             className="flex flex-wrap gap-y-1"
@@ -190,14 +178,19 @@ export function Hero() {
               type="button"
               onClick={handleCopyEmail}
               data-cursor-hover
-              className="mx-[0.2em] mb-[0.4em] inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-accent bg-transparent px-4 py-[0.3em] text-[13px] text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-foreground sm:gap-3 sm:px-5 sm:text-[15px]"
+              className="group mx-[0.2em] mb-[0.4em] inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-accent bg-transparent px-4 py-[0.3em] text-[13px] transition-colors duration-200 sm:gap-3 sm:px-5 sm:text-[15px]"
             >
-              {copied ? "Copied!" : (
+              {copied ? (
+                <span className="text-accent">Copied!</span>
+              ) : (
                 <>
-                  Reach me: <span className="underline underline-offset-1">{site.email}</span>
+                  <span className="text-accent">Reach me:</span>{" "}
+                  <span className="text-foreground transition-colors duration-200 group-hover:text-accent">
+                    {site.email}
+                  </span>
                 </>
               )}
-              <Copy size={12} />
+              <Copy size={12} className="text-accent" />
             </button>
           </div>
         </div>
@@ -231,19 +224,11 @@ export function Hero() {
         <ArrowDown size={20} />
       </motion.a>
 
-      {/* Gallery entry point, planted on the sparkle prop in the video
-          instead of living in the navbar. Large desktop only — the video's
-          object-cover crop shifts enough on shorter/narrower "lg" laptop
-          viewports (1024-1279px) that the marker drifts off the actual
-          sparkle there; mobile/tablet/small-laptop users reach the gallery
-          via the menu instead. */}
       <Link
         href="/gallery"
         aria-label="Open gallery"
         data-cursor-hover
         onClick={(e) => {
-          // Let modified clicks (open in new tab, etc.) behave normally —
-          // only intercept a plain left click to run the wipe transition.
           if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
           e.preventDefault();
           navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });

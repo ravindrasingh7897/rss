@@ -1,8 +1,3 @@
-// ---------------------------------------------------------------------------
-// Edit everything in this file with your real details. Nothing else in the
-// codebase needs to change to personalize the site.
-// ---------------------------------------------------------------------------
-
 export const site = {
   name: "Ravindra Singh",
   role: "Software Developer — Full-Stack & GenAI",
@@ -26,20 +21,11 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Not in the main nav — on desktop it's reachable via the glowing marker
-// planted on the sparkle in the hero video (see Hero.tsx). Kept here too so
-// it still shows up in the mobile menu, where that in-scene trick doesn't work.
 export const galleryLink = { label: "Gallery", href: "/gallery" };
 
 export const hero = {
-  // Blurred, out-of-focus intro line rendered behind the typewriter text.
-  introLines: [`Hey, I'm ${site.name.split(" ")[0]} —`, "a full-stack developer building GenAI-powered platforms."],
-  // Typed out character-by-character on load.
-  typewriter: "Glad you stopped by. Good code tends to speak for itself — so, what should we build?",
-  // Muted background video, scrubbed by horizontal mouse movement (no autoplay).
-  // Re-encoded locally with a keyframe on every frame (ffmpeg -g 1) — the
-  // original file had a single keyframe for its whole 4s duration, which is
-  // what made scrubbing freeze regardless of the JS seek logic.
+  introLines: [`Hey, I'm ${site.name.split(" ")[0]} -`, "a Full-Stack Engineer building and shipping GenAI-powered applications."],
+  typewriter: "Glad you stopped by. Good code tends to speak for itself - so, what should we build?",
   videoUrl: "/videos/hero-scrub.mp4",
   pills: [
     { label: "See my work", href: "#projects" },
@@ -47,9 +33,9 @@ export const hero = {
     { label: "Let's talk", href: "#contact" },
   ],
   stats: [
-    { value: "150+", label: "DSA problems solved" },
+    { value: "200+", label: "DSA problems solved" },
     { value: "97.7%ile", label: "JEE Mains 2022" },
-    { value: "3", label: "Companies & teams" },
+    { value: "4", label: "Companies & teams" },
     { value: "₹20L+", label: "Sponsorship raised" },
   ],
 };
@@ -61,8 +47,6 @@ export type ExperienceItem = {
   period: string;
   points: string[];
   tech: string[];
-  // Link to the offer letter / experience certificate on Drive (or wherever
-  // you host it). Leave as "#" until you have the real link.
   certificateUrl: string;
 };
 
@@ -197,7 +181,6 @@ export const achievements: Achievement[] = [
     description: "Raised in sponsorships; managed guests including Sandeep Jain, Mohd. Irfan, and Sunburn.",
     icon: "handCoins",
   },
-  // Placeholders — swap these for real achievements.
   {
     stat: "TBD",
     title: "Placeholder Achievement",
@@ -218,7 +201,6 @@ export type GalleryItem = {
   caption: string;
 };
 
-// Drop your own photos into /public/gallery and update the entries below.
 export const gallery: GalleryItem[] = [
   { src: "/gallery/witcher.jpg", alt: "The Witcher 3 key art", caption: "The Witcher 3" },
   { src: "/gallery/tomb-raider.jpg", alt: "Shadow of the Tomb Raider key art", caption: "Shadow of the Tomb Raider" },
