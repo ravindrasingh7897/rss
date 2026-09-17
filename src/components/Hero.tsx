@@ -125,8 +125,7 @@ export function Hero() {
           playsInline
           preload="auto"
           src={hero.videoUrl}
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
-          style={{ objectPosition: "70% center" }}
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-70 md:object-[70%_center]"
           aria-hidden
         />
       )}
@@ -233,9 +232,11 @@ export function Hero() {
       </motion.a>
 
       {/* Gallery entry point, planted on the sparkle prop in the video
-          instead of living in the navbar. Desktop only — the video crops
-          differently on narrow/tall viewports so this wouldn't land on the
-          sparkle there; mobile users reach the gallery via the menu instead. */}
+          instead of living in the navbar. Large desktop only — the video's
+          object-cover crop shifts enough on shorter/narrower "lg" laptop
+          viewports (1024-1279px) that the marker drifts off the actual
+          sparkle there; mobile/tablet/small-laptop users reach the gallery
+          via the menu instead. */}
       <Link
         href="/gallery"
         aria-label="Open gallery"
@@ -247,7 +248,7 @@ export function Hero() {
           e.preventDefault();
           navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
         }}
-        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
+        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 xl:inline-flex`}
         style={{ left: "91.5%", top: "86%" }}
       >
         <Sparkles size={14} />
