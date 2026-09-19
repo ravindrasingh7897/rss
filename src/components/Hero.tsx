@@ -97,8 +97,7 @@ export function Hero() {
       <div className="absolute inset-0 space-bg" aria-hidden>
         <div className="nebula-blob left-[-10%] top-[-10%] h-[45vw] w-[45vw] bg-emerald-500" aria-hidden />
         <div
-          className="nebula-blob right-[5%] top-[10%] h-[38vw] w-[38vw] bg-violet-600"
-          style={{ animationDelay: "-7s" }}
+          className="nebula-blob right-[5%] top-[10%] h-[38vw] w-[38vw] bg-violet-600 [animation-delay:-7s]"
           aria-hidden
         />
       </div>
@@ -136,27 +135,13 @@ export function Hero() {
 
       <div className="relative z-10 flex w-full items-center justify-between gap-8">
         <div className="max-w-xl">
-          <p
-            className="mb-3 hidden text-muted-foreground sm:mb-4 md:block"
-            style={{
-              fontSize: "clamp(14px, 2.4vw, 17px)",
-              lineHeight: 1.4,
-              fontWeight: 400,
-            }}
-          >
+          <p className="mb-3 hidden text-[clamp(14px,2.4vw,17px)] font-normal leading-[1.4] text-muted-foreground sm:mb-4 md:block">
             {hero.introLines[0]}
             <br />
             {hero.introLines[1]}
           </p>
 
-          <div
-            className="relative mb-5 sm:mb-6"
-            style={{
-              fontSize: "clamp(18px, 4vw, 26px)",
-              lineHeight: 1.35,
-              fontWeight: 400,
-            }}
-          >
+          <div className="relative mb-5 text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] sm:mb-6">
             <p aria-hidden className="invisible">
               {hero.typewriter}
             </p>
@@ -259,8 +244,7 @@ export function Hero() {
           e.preventDefault();
           navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
         }}
-        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
-        style={{ left: "91.5%", top: "86%" }}
+        className={`${pillClassName} absolute left-[91.5%] top-[86%] z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
       >
         <Sparkles size={14} />
         Gallery
