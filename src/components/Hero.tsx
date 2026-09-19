@@ -122,10 +122,22 @@ export function Hero() {
       <div className="absolute inset-0 bg-accent/10 mix-blend-color" aria-hidden />
       <div className="pointer-events-none absolute inset-0 grid-fade opacity-15" aria-hidden />
 
+      <div
+        className="absolute inset-x-5 top-24 z-10 flex h-28 flex-col items-center justify-center gap-2 text-center sm:inset-x-8 sm:top-28 md:hidden"
+        style={{
+          opacity: pillsVisible ? 1 : 0,
+          transform: pillsVisible ? "translateY(0)" : "translateY(-8px)",
+          transition: "opacity 0.5s ease, transform 0.5s ease",
+        }}
+      >
+        <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
+        <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
+      </div>
+
       <div className="relative z-10 flex w-full items-center justify-between gap-8">
         <div className="max-w-xl">
           <p
-            className="mb-3 text-muted-foreground sm:mb-4"
+            className="mb-3 hidden text-muted-foreground sm:mb-4 md:block"
             style={{
               fontSize: "clamp(14px, 2.4vw, 17px)",
               lineHeight: 1.4,
