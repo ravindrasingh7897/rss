@@ -14,7 +14,7 @@ function clamp(n: number, min: number, max: number) {
 }
 
 const pillClassName =
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-card/80 backdrop-blur px-4 py-[0.3em] mx-[0.2em] mb-[0.4em] text-[13px] text-foreground transition-colors duration-200 hover:border-accent hover:text-accent sm:px-5 sm:text-[15px]";
+  "items-center justify-center whitespace-nowrap rounded-full border border-border bg-card/80 backdrop-blur px-4 py-[0.3em] mx-[0.2em] mb-[0.4em] text-[13px] text-foreground transition-colors duration-200 hover:border-accent hover:text-accent sm:px-5 sm:text-[15px]";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -164,15 +164,29 @@ export function Hero() {
           >
             {hero.pills.map((pill) =>
               pill.href.startsWith("#") ? (
-                <a key={pill.label} href={pill.href} data-cursor-hover className={pillClassName}>
+                <a key={pill.label} href={pill.href} data-cursor-hover className={`inline-flex ${pillClassName}`}>
                   {pill.label}
                 </a>
               ) : (
-                <Link key={pill.label} href={pill.href} data-cursor-hover className={pillClassName}>
+                <Link key={pill.label} href={pill.href} data-cursor-hover className={`inline-flex ${pillClassName}`}>
                   {pill.label}
                 </Link>
               )
             )}
+
+            <Link
+              href="/gallery"
+              data-cursor-hover
+              onClick={(e) => {
+                if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                e.preventDefault();
+                navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
+              }}
+              className={`inline-flex ${pillClassName} gap-1.5 lg:hidden`}
+            >
+              <Sparkles size={13} />
+              Gallery
+            </Link>
 
             <button
               type="button"
@@ -233,7 +247,7 @@ export function Hero() {
           e.preventDefault();
           navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
         }}
-        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 xl:inline-flex`}
+        className={`${pillClassName} absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
         style={{ left: "91.5%", top: "86%" }}
       >
         <Sparkles size={14} />
