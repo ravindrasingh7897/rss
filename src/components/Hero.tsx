@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Copy, Sparkles } from "lucide-react";
@@ -83,24 +84,6 @@ export function Hero() {
     };
   }, [reducedMotion, finePointer]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || reducedMotion || finePointer) return;
-
-    function showMiddleFrame() {
-      if (!video || !video.duration) return;
-      video.pause();
-      video.currentTime = video.duration / 2;
-    }
-
-    if (video.duration) {
-      showMiddleFrame();
-    } else {
-      video.addEventListener("loadedmetadata", showMiddleFrame);
-      return () => video.removeEventListener("loadedmetadata", showMiddleFrame);
-    }
-  }, [reducedMotion, finePointer]);
-
   async function handleCopyEmail() {
     try {
       await navigator.clipboard.writeText(site.email);
@@ -123,7 +106,17 @@ export function Hero() {
         />
       </div>
 
-      {!reducedMotion && (
+      {reducedMotion || !finePointer ? (
+        <Image
+          src="/videos/hero-still.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-70 md:object-[70%_center]"
+          aria-hidden
+        />
+      ) : (
         <video
           ref={videoRef}
           muted
