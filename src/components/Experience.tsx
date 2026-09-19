@@ -9,7 +9,7 @@ export function Experience() {
     title: item.period,
     content: (
       <div key={item.company} className="group relative rounded-2xl border border-border bg-card/40 p-6">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div>
             <h4 className="text-lg font-semibold text-foreground md:text-xl">{item.company}</h4>
             <p className="mt-1 text-sm text-muted-foreground md:text-base">
