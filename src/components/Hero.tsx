@@ -165,13 +165,11 @@ export function Hero() {
             </p>
           </div>
 
-          <div
+          <motion.div
             className="flex flex-wrap gap-y-1"
-            style={{
-              opacity: pillsVisible ? 1 : 0,
-              transform: pillsVisible ? "translateY(0)" : "translateY(8px)",
-              transition: "opacity 0.4s ease, transform 0.4s ease",
-            }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={pillsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             {hero.pills.map((pill) =>
               pill.href.startsWith("#") ? (
@@ -217,25 +215,25 @@ export function Hero() {
               )}
               <Copy size={12} className="text-accent" />
             </button>
-          </div>
+          </motion.div>
         </div>
 
-        <div
+        <motion.div
           className="hidden shrink-0 flex-col items-end gap-6 text-right lg:flex"
-          style={{
-            opacity: pillsVisible ? 1 : 0,
-            transform: pillsVisible ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.4s ease, transform 0.4s ease",
-          }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={pillsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
           <p className="font-mono text-xs tracking-wide text-accent">{"// At a glance"}</p>
           {hero.stats.map((stat) => (
-            <div key={stat.label}>
-              <div className="font-mono text-3xl font-semibold text-foreground">{stat.value}</div>
+            <div key={stat.label} className="group cursor-default">
+              <div className="font-mono text-3xl font-semibold text-foreground transition-all duration-200 group-hover:-translate-x-0.5 group-hover:text-accent">
+                {stat.value}
+              </div>
               <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <motion.a
