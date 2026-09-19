@@ -191,7 +191,7 @@ export function Hero() {
               onClick={(e) => {
                 if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                 e.preventDefault();
-                navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
+                navigateWithTransition("/gallery");
               }}
               className={`inline-flex ${pillClassName} gap-1.5 lg:hidden`}
             >
@@ -256,7 +256,7 @@ export function Hero() {
         onClick={(e) => {
           if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
           e.preventDefault();
-          navigateWithTransition("/gallery", { x: e.clientX, y: e.clientY });
+          navigateWithTransition("/gallery");
         }}
         className={`${pillClassName} absolute left-[91.5%] top-[86%] z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
       >

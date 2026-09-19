@@ -20,6 +20,7 @@ import {
 } from "framer-motion"
 
 import { cn } from "@/lib/utils"
+import { MagneticButton } from "@/components/MagneticButton"
 
 export interface HeroCarouselItem {
   /** Stable key; falls back to the index. @default undefined */
@@ -281,14 +282,16 @@ export function HeroCarousel({
         style={{ top: Math.max(16, box.h * 0.029), gap: `${Math.max(20, box.w * 0.06)}px` }}
       >
         {onBack ? (
-          <button
+          <MagneticButton
             type="button"
             onClick={onBack}
+            strength={0.4}
+            radius={40}
             className="opacity-90 transition-opacity hover:opacity-100"
             style={{ fontSize: label * 1.15 }}
           >
             <span aria-hidden>↖</span> Back
-          </button>
+          </MagneticButton>
         ) : null}
         {brand ? (
           <div

@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { HeroCarousel, type HeroCarouselItem } from "@/components/ui/hero-carousel";
+import { usePageTransition } from "@/components/PageTransition";
 import { gallery, site } from "@/data/content";
 
 // Cyberpunk trio used across the site's 3D background — reused here so the
@@ -10,7 +10,7 @@ import { gallery, site } from "@/data/content";
 const ACCENTS = ["#22c55e", "#7c3aed", "#06b6d4"];
 
 export function GalleryFullScreen() {
-  const router = useRouter();
+  const { navigateWithTransition } = usePageTransition();
 
   const items = useMemo<HeroCarouselItem[]>(
     () =>
@@ -28,7 +28,7 @@ export function GalleryFullScreen() {
       <HeroCarousel
         items={items}
         brand={`${site.name.split(" ")[0]} — Gallery`}
-        onBack={() => router.push("/")}
+        onBack={() => navigateWithTransition("/")}
         className="h-full"
       />
     </div>
