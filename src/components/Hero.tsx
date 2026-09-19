@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Copy, Sparkles } from "lucide-react";
 import { hero, site } from "@/data/content";
 import { useTypewriter } from "@/hooks/useTypewriter";
+import { useIsFinePointer } from "@/hooks/useIsFinePointer";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { usePageTransition } from "@/components/PageTransition";
 
@@ -19,6 +20,7 @@ const pillClassName =
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reducedMotion = usePrefersReducedMotion();
+  const finePointer = useIsFinePointer();
   const shouldReduceMotion = useReducedMotion();
   const { displayed, done } = useTypewriter(hero.typewriter);
   const [pillsVisible, setPillsVisible] = useState(false);
@@ -32,7 +34,8 @@ export function Hero() {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion) return;
+    if (!video || reducedMotion || !finePointer) return;
+    video.pause();
 
     let targetTime = 0;
     let appliedTime = -1;
@@ -78,7 +81,25 @@ export function Hero() {
       video.removeEventListener("seeked", onSeeked);
       window.removeEventListener("mousemove", onMouseMove);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, finePointer]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reducedMotion || finePointer) return;
+
+    function showMiddleFrame() {
+      if (!video || !video.duration) return;
+      video.pause();
+      video.currentTime = video.duration / 2;
+    }
+
+    if (video.duration) {
+      showMiddleFrame();
+    } else {
+      video.addEventListener("loadedmetadata", showMiddleFrame);
+      return () => video.removeEventListener("loadedmetadata", showMiddleFrame);
+    }
+  }, [reducedMotion, finePointer]);
 
   async function handleCopyEmail() {
     try {
