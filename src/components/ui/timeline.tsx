@@ -36,18 +36,18 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     <div className="w-full font-sans" ref={containerRef}>
       <div ref={ref} className="relative mx-auto max-w-6xl">
         {data.map((item, index) => (
-          <div key={index} className="flex justify-start pt-10 md:gap-10 md:pt-32">
-            <div className="sticky top-32 z-10 flex max-w-xs shrink-0 flex-col items-center self-start md:w-full md:max-w-sm md:flex-row lg:max-w-sm">
+          <div key={index} className="flex justify-start pt-10 lg:gap-10 lg:pt-32">
+            <div className="sticky top-32 z-10 flex max-w-xs shrink-0 flex-col items-center self-start lg:w-full lg:max-w-sm lg:flex-row">
               <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-background">
                 <div className="h-4 w-4 rounded-full border border-accent/60 bg-accent/20" />
               </div>
-              <h3 className="hidden whitespace-nowrap text-xl font-bold text-muted-foreground md:block md:pl-20 md:text-2xl">
+              <h3 className="hidden whitespace-nowrap text-xl font-bold text-muted-foreground lg:block lg:pl-20 lg:text-2xl">
                 {item.title}
               </h3>
             </div>
 
-            <div className="relative w-full pl-20 pr-4 md:pl-4">
-              <h3 className="mb-4 block text-left text-2xl font-bold text-muted-foreground md:hidden">
+            <div className="relative w-full pl-20 pr-4 lg:pl-4">
+              <h3 className="mb-4 block text-left text-2xl font-bold text-muted-foreground lg:hidden">
                 {item.title}
               </h3>
               {item.content}
