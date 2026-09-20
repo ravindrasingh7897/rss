@@ -169,15 +169,31 @@ export function Hero() {
       </AnimatePresence>
 
       <div
-        className="absolute inset-x-5 top-24 z-10 flex h-28 flex-col items-center justify-center gap-2 text-center sm:inset-x-8 sm:top-28 md:hidden"
+        className="absolute inset-x-5 top-24 z-10 flex flex-col items-center justify-center gap-3 text-center sm:inset-x-8 sm:top-28 md:hidden"
         style={{
           opacity: pillsVisible ? 1 : 0,
           transform: pillsVisible ? "translateY(0)" : "translateY(-8px)",
           transition: "opacity 0.5s ease, transform 0.5s ease",
         }}
       >
-        <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
-        <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
+        <div>
+          <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
+          <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
+        </div>
+
+        <Link
+          href="/gallery"
+          data-cursor-hover
+          onClick={(e) => {
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            navigateWithTransition("/gallery");
+          }}
+          className={`inline-flex ${pillClassName} gap-1.5`}
+        >
+          <Sparkles size={13} />
+          Gallery
+        </Link>
       </div>
 
       <div className="relative z-10 flex w-full items-center justify-between gap-8">
@@ -224,7 +240,7 @@ export function Hero() {
                 e.preventDefault();
                 navigateWithTransition("/gallery");
               }}
-              className={`inline-flex ${pillClassName} gap-1.5 lg:hidden`}
+              className={`hidden ${pillClassName} gap-1.5 md:inline-flex lg:hidden`}
             >
               <Sparkles size={13} />
               Gallery
