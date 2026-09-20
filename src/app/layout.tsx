@@ -19,7 +19,7 @@ const code = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
+  title: `${site.name} - ${site.role}`,
   description: site.tagline,
 };
 

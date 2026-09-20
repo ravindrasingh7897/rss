@@ -1,6 +1,6 @@
 export const site = {
   name: "Ravindra Singh",
-  role: "Software Developer — Full-Stack & GenAI",
+  role: "Software Developer - Full-Stack & GenAI",
   tagline:
     "I'm a full-stack developer who enjoys turning complex problems into simple, elegant systems. Currently building GenAI-powered platforms at KuKi Solutions, with a B.Tech in Computer Science from LNMIIT Jaipur.",
   location: "India",

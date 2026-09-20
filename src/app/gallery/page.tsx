@@ -3,7 +3,7 @@ import { GalleryFullScreen } from "@/components/GalleryFullScreen";
 import { site } from "@/data/content";
 
 export const metadata: Metadata = {
-  title: `Gallery — ${site.name}`,
+  title: `Gallery - ${site.name}`,
   description: "Photos and good moments.",
 };
 
