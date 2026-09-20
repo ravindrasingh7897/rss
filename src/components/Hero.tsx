@@ -8,6 +8,7 @@ import { ArrowDown, Copy, Sparkles } from "lucide-react";
 import { hero, site } from "@/data/content";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useIsFinePointer } from "@/hooks/useIsFinePointer";
+import { useSessionFlag, setSessionFlag } from "@/hooks/useSessionFlag";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { usePageTransition } from "@/components/PageTransition";
 
@@ -23,15 +24,21 @@ export function Hero() {
   const reducedMotion = usePrefersReducedMotion();
   const finePointer = useIsFinePointer();
   const shouldReduceMotion = useReducedMotion();
-  const { displayed, done } = useTypewriter(hero.typewriter);
-  const [pillsVisible, setPillsVisible] = useState(false);
+  const introSeen = useSessionFlag("hero-intro-seen");
+  const { displayed, done } = useTypewriter(hero.typewriter, 38, 600, introSeen);
+  const [delayElapsed, setDelayElapsed] = useState(false);
+  const pillsVisible = introSeen || delayElapsed;
   const [copied, setCopied] = useState(false);
   const { navigateWithTransition } = usePageTransition();
 
   useEffect(() => {
-    const t = setTimeout(() => setPillsVisible(true), 400);
+    if (introSeen) return;
+    const t = setTimeout(() => {
+      setDelayElapsed(true);
+      setSessionFlag("hero-intro-seen");
+    }, 400);
     return () => clearTimeout(t);
-  }, []);
+  }, [introSeen]);
 
   useEffect(() => {
     const video = videoRef.current;

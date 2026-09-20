@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-export function useTypewriter(text: string, speed = 38, startDelay = 600) {
-  const reduced = usePrefersReducedMotion();
-  const [displayed, setDisplayed] = useState(() => (reduced ? text : ""));
-  const [done, setDone] = useState(reduced);
-  const indexRef = useRef(reduced ? text.length : 0);
+export function useTypewriter(text: string, speed = 38, startDelay = 600, instant = false) {
+  const reduced = usePrefersReducedMotion() || instant;
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+  const indexRef = useRef(0);
 
   useEffect(() => {
     if (reduced) return;
@@ -31,5 +31,5 @@ export function useTypewriter(text: string, speed = 38, startDelay = 600) {
     };
   }, [text, speed, startDelay, reduced]);
 
-  return { displayed, done };
+  return reduced ? { displayed: text, done: true } : { displayed, done };
 }
