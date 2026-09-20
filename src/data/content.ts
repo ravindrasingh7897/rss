@@ -158,7 +158,7 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
-    stat: "150+",
+    stat: "200+",
     title: "Competitive Programming",
     description: "Coding problems solved across various platforms.",
     icon: "code",
@@ -178,20 +178,20 @@ export const achievements: Achievement[] = [
   {
     stat: "₹20L+",
     title: "Sponsorship Lead, Plinth",
-    description: "Raised in sponsorships; managed guests including Sandeep Jain, Mohd. Irfan, and Sunburn.",
+    description: "Raised in sponsorships from companies including BMW Motorrad, Mahindra, SBI, Unstop, and EaseMyTrip.",
     icon: "handCoins",
   },
   {
-    stat: "TBD",
-    title: "Placeholder Achievement",
-    description: "Replace this with a real achievement or responsibility.",
+    stat: "Mentorship",
+    title: "Teaching Assistant, IoT Labs",
+    description: "Mentored 80+ students and led 12+ hands-on IoT labs using Arduino, ESP8266, DHT22, and HiveMQ.",
     icon: "trophy",
   },
   {
-    stat: "TBD",
-    title: "Placeholder Achievement",
-    description: "Replace this with a real achievement or responsibility.",
-    icon: "code",
+    stat: "Ownership",
+    title: "Artist Coordination",
+    description: "Coordinated performances and hospitality for artists including Mohd. Irfan, Nikhil D'Souza, and Stebin Ben.",
+    icon: "users",
   },
 ];
 
