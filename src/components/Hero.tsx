@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Copy, Sparkles } from "lucide-react";
 import { hero, site } from "@/data/content";
 import { useTypewriter } from "@/hooks/useTypewriter";
@@ -29,6 +29,8 @@ export function Hero() {
   const [delayElapsed, setDelayElapsed] = useState(false);
   const pillsVisible = introSeen || delayElapsed;
   const [copied, setCopied] = useState(false);
+  const [mediaReady, setMediaReady] = useState(false);
+  const showLoader = !introSeen && !mediaReady;
   const { navigateWithTransition } = usePageTransition();
 
   useEffect(() => {
@@ -41,11 +43,17 @@ export function Hero() {
   }, [introSeen]);
 
   useEffect(() => {
+    if (introSeen) return;
+    const t = setTimeout(() => setMediaReady(true), 2500);
+    return () => clearTimeout(t);
+  }, [introSeen]);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (!video || reducedMotion || !finePointer) return;
     video.pause();
 
-    let targetTime = 0;
+    let targetTime = -1;
     let appliedTime = -1;
     let seeking = false;
     let rafId: number;
@@ -72,6 +80,7 @@ export function Hero() {
     function tick() {
       rafId = requestAnimationFrame(tick);
       if (!video || !video.duration || seeking) return;
+      if (targetTime === -1) targetTime = video.duration / 2;
       if (Math.abs(targetTime - appliedTime) < 0.02) return;
       appliedTime = targetTime;
       seeking = true;
@@ -120,6 +129,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
+          onLoad={() => setMediaReady(true)}
           className="object-cover object-center opacity-70 md:object-[70%_center]"
           aria-hidden
         />
@@ -129,7 +139,9 @@ export function Hero() {
           muted
           playsInline
           preload="auto"
+          poster="/videos/hero-still.jpg"
           src={hero.videoUrl}
+          onCanPlay={() => setMediaReady(true)}
           className="absolute inset-0 h-full w-full object-cover object-center opacity-70 md:object-[70%_center]"
           aria-hidden
         />
@@ -141,6 +153,20 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-accent/10 mix-blend-color" aria-hidden />
       <div className="pointer-events-none absolute inset-0 grid-fade opacity-15" aria-hidden />
+
+      <AnimatePresence>
+        {showLoader && (
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-background"
+          >
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-border border-t-accent" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         className="absolute inset-x-5 top-24 z-10 flex h-28 flex-col items-center justify-center gap-2 text-center sm:inset-x-8 sm:top-28 md:hidden"
