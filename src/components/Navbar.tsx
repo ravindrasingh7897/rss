@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { galleryLink, nav, site } from "@/data/content";
+import { nav, site } from "@/data/content";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/MagneticButton";
 
@@ -127,7 +127,7 @@ export function Navbar() {
             className="md:hidden overflow-hidden border-b border-border bg-background/95 backdrop-blur-md"
           >
             <ul className="flex flex-col px-6 py-4 gap-1">
-              {[...nav, galleryLink].map((item) => {
+              {nav.map((item) => {
                 const isRoute = !item.href.startsWith("#");
                 const className =
                   "block py-2 text-base text-muted-foreground hover:text-accent cursor-pointer";

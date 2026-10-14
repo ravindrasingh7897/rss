@@ -4,7 +4,6 @@ import "./globals.css";
 import { site } from "@/data/content";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CustomCursor } from "@/components/CustomCursor";
-import { PageTransitionProvider } from "@/components/PageTransition";
 
 const body = IBM_Plex_Sans({
   variable: "--font-body",
@@ -32,11 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="nebula-blob right-[-10%] top-[55%] h-[45vw] w-[45vw] bg-violet-600 [animation-delay:-11s]" />
         </div>
         <CustomCursor />
-        <PageTransitionProvider>
-          <SmoothScroll>
-            <div className="relative z-10">{children}</div>
-          </SmoothScroll>
-        </PageTransitionProvider>
+        <SmoothScroll>
+          <div className="relative z-10">{children}</div>
+        </SmoothScroll>
       </body>
     </html>
   );

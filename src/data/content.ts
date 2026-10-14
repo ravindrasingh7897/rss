@@ -21,8 +21,6 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ];
 
-export const galleryLink = { label: "Gallery", href: "/gallery" };
-
 export const hero = {
   introLines: [`Hey, I'm ${site.name.split(" ")[0]} -`, "a Full-Stack Engineer building and shipping GenAI-powered applications."],
   typewriter: "Glad you stopped by. Good code tends to speak for itself - so, what should we build?",
@@ -193,18 +191,4 @@ export const achievements: Achievement[] = [
     description: "Coordinated performances and hospitality for artists including Mohd. Irfan, Nikhil D'Souza, and Stebin Ben.",
     icon: "users",
   },
-];
-
-export type GalleryItem = {
-  src: string;
-  alt: string;
-  caption: string;
-};
-
-export const gallery: GalleryItem[] = [
-  { src: "/gallery/witcher.jpg", alt: "The Witcher 3 key art", caption: "The Witcher 3" },
-  { src: "/gallery/tomb-raider.jpg", alt: "Shadow of the Tomb Raider key art", caption: "Shadow of the Tomb Raider" },
-  { src: "/gallery/kratos.jpg", alt: "God of War Kratos key art", caption: "God of War" },
-  { src: "/gallery/neon-japan.jpg", alt: "Neon 80s Japan aesthetic art", caption: "Neon Tokyo" },
-  { src: "/gallery/sci-fi-mask.jpg", alt: "Sci-fi girl in a mask, digital art", caption: "Sci-Fi Mask" },
 ];

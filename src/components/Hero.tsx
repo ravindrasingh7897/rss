@@ -4,13 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, Copy, Sparkles } from "lucide-react";
+import { ArrowDown, Copy } from "lucide-react";
 import { hero, site } from "@/data/content";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useIsFinePointer } from "@/hooks/useIsFinePointer";
 import { useSessionFlag, setSessionFlag } from "@/hooks/useSessionFlag";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { usePageTransition } from "@/components/PageTransition";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -31,7 +30,6 @@ export function Hero() {
   const [copied, setCopied] = useState(false);
   const [mediaReady, setMediaReady] = useState(false);
   const showLoader = !introSeen && !mediaReady;
-  const { navigateWithTransition } = usePageTransition();
 
   useEffect(() => {
     if (introSeen) return;
@@ -169,31 +167,15 @@ export function Hero() {
       </AnimatePresence>
 
       <div
-        className="absolute inset-x-5 top-24 z-10 flex flex-col items-center justify-center gap-3 text-center sm:inset-x-8 sm:top-28 md:hidden"
+        className="absolute inset-x-5 top-24 z-10 flex flex-col items-center justify-center text-center sm:inset-x-8 sm:top-28 md:hidden"
         style={{
           opacity: pillsVisible ? 1 : 0,
           transform: pillsVisible ? "translateY(0)" : "translateY(-8px)",
           transition: "opacity 0.5s ease, transform 0.5s ease",
         }}
       >
-        <div>
-          <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
-          <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
-        </div>
-
-        <Link
-          href="/gallery"
-          data-cursor-hover
-          onClick={(e) => {
-            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-            e.preventDefault();
-            navigateWithTransition("/gallery");
-          }}
-          className={`inline-flex ${pillClassName} gap-1.5`}
-        >
-          <Sparkles size={13} />
-          Gallery
-        </Link>
+        <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
+        <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
       </div>
 
       <div className="relative z-10 flex w-full items-center justify-between gap-8">
@@ -231,20 +213,6 @@ export function Hero() {
                 </Link>
               )
             )}
-
-            <Link
-              href="/gallery"
-              data-cursor-hover
-              onClick={(e) => {
-                if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-                e.preventDefault();
-                navigateWithTransition("/gallery");
-              }}
-              className={`hidden ${pillClassName} gap-1.5 md:inline-flex lg:hidden`}
-            >
-              <Sparkles size={13} />
-              Gallery
-            </Link>
 
             <button
               type="button"
@@ -295,21 +263,6 @@ export function Hero() {
       >
         <ArrowDown size={20} />
       </motion.a>
-
-      <Link
-        href="/gallery"
-        aria-label="Open gallery"
-        data-cursor-hover
-        onClick={(e) => {
-          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-          e.preventDefault();
-          navigateWithTransition("/gallery");
-        }}
-        className={`${pillClassName} absolute left-[91.5%] top-[86%] z-10 hidden -translate-x-1/2 -translate-y-1/2 gap-2 lg:inline-flex`}
-      >
-        <Sparkles size={14} />
-        Gallery
-      </Link>
     </section>
   );
 }
