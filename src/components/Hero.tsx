@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Copy } from "lucide-react";
 import { hero, site } from "@/data/content";
+import { AnimatedStat } from "@/components/AnimatedStat";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useIsFinePointer } from "@/hooks/useIsFinePointer";
 import { useSessionFlag, setSessionFlag } from "@/hooks/useSessionFlag";
@@ -245,7 +246,7 @@ export function Hero() {
           {hero.stats.map((stat) => (
             <div key={stat.label} className="group cursor-default">
               <div className="font-mono text-3xl font-semibold text-foreground transition-all duration-200 group-hover:-translate-x-0.5 group-hover:text-accent">
-                {stat.value}
+                <AnimatedStat value={stat.value} start={pillsVisible} />
               </div>
               <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
             </div>
