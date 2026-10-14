@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
+import { TechMarquee } from "@/components/TechMarquee";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Achievements } from "@/components/Achievements";
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <TechMarquee />
         <Experience />
         <Projects />
         <Achievements />
