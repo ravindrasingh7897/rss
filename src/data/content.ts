@@ -55,12 +55,13 @@ export const experience: ExperienceItem[] = [
     location: "On-Site",
     period: "Nov 2025 — Present",
     certificateUrl: "#",
-    tech: ["Next.js", "React", "FastAPI", "Celery", "Redis", "MySQL", "MongoDB", "Azure OpenAI", "Gemini"],
+    tech: ["Next.js", "React", "FastAPI", "Celery", "Redis", "Docker", "MySQL", "MongoDB", "Azure OpenAI", "OpenAI", "Gemini", "Sentry"],
     points: [
-      "Co-built two GenAI-powered ESG & BRSR compliance platforms, cutting report preparation time from months to hours for 4-5 clients; independently designed and shipped the product's landing website.",
-      "Built a multi-provider LLM pipeline (Azure OpenAI, Google Gemini via AI Studio/Vertex AI for OCR + extraction) with Langfuse tracing and retry/backoff handling, powering document classification, checklist auto-mapping, and structured ESG data extraction.",
-      "Collaborated with the backend team to build an async batch-processing system (FastAPI, Celery, Redis) for document pipelines, using MySQL (SQLAlchemy) and MongoDB (Motor), with cross-service RS256 JWT authentication between the Node.js and Python backends.",
-      "Built ESG dashboards and automated PDF reports (Next.js, React, Jinja2/WeasyPrint) with multilingual support, allowing users to review and edit AI-generated reports before export.",
+      "Co-built two GenAI-powered ESG & BRSR compliance platforms, cutting report preparation time from months to hours for 4-5 enterprise; independently designed and shipped the product's landing website.",
+      "Engineered a multi-provider LLM pipeline (Azure OpenAI, Gemini) with Langfuse/Sentry and retry/backoff powering OCR, document classification, checklist auto-mapping, and ESG data extraction.",
+      "Developed an RBAC-gated, intent-routed chat assistant (FastAPI, OpenAI, MongoDB, Next.js) answering for 40+ knowledge docs and 2 live project data through permission-checked tools.",
+      "Build an async batch-processing system (FastAPI, Celery, Redis, Docker) over MySQL, MongoDB, and Azure Blob Storage with cross-service RS256 JWT auth between the Node.js and Python backends.",
+      "Designed ESG dashboards and automated PDF reports (Next.js, React, Jinja2/WeasyPrint) with multilingual support, allowing users to review and edit AI-generated reports before export.",
     ],
   },
   {
