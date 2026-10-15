@@ -56,7 +56,7 @@ export function Navbar() {
         scrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#top"
           data-cursor-hover
@@ -66,7 +66,7 @@ export function Navbar() {
           <span className="text-accent">.</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-1 relative">
+        <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 md:flex">
           {nav.map((item) => {
             const isRoute = !item.href.startsWith("#");
             const linkClassName = cn(
@@ -98,14 +98,6 @@ export function Navbar() {
             );
           })}
         </ul>
-
-        <a
-          href={`mailto:${site.email}`}
-          data-cursor-hover
-          className="hidden md:inline-flex items-center rounded-full border border-border px-4 py-2 text-sm text-foreground hover:border-accent hover:text-accent"
-        >
-          Say hello
-        </a>
 
         <button
           aria-label="Toggle menu"
