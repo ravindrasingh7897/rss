@@ -46,6 +46,7 @@ export type ExperienceItem = {
   points: string[];
   tech: string[];
   certificateUrl: string;
+  linkType?: "certificate" | "website";
 };
 
 export const experience: ExperienceItem[] = [
@@ -54,7 +55,8 @@ export const experience: ExperienceItem[] = [
     company: "KuKi Solutions",
     location: "On-Site",
     period: "Nov 2025 — Present",
-    certificateUrl: "#",
+    certificateUrl: "https://kuki.co.in/",
+    linkType: "website",
     tech: ["Next.js", "React", "FastAPI", "Celery", "Redis", "Docker", "MySQL", "MongoDB", "Azure OpenAI", "OpenAI", "Gemini", "Sentry"],
     points: [
       "Co-built two GenAI-powered ESG & BRSR compliance platforms, cutting report preparation time from months to hours for 4-5 enterprise; independently designed and shipped the product's landing website.",
@@ -69,7 +71,7 @@ export const experience: ExperienceItem[] = [
     company: "SkillsOn",
     location: "Remote",
     period: "Mar 2025 — Aug 2025",
-    certificateUrl: "#",
+    certificateUrl: "https://drive.google.com/file/d/1QqAj2HChzH8lxgRkcnUr4hkgXWQtLMB9/view?usp=drive_link",
     tech: ["Vercel", "DigitalOcean", "Cloudinary", "VdoCipher", "Google OAuth", "Razorpay", "Nodemailer"],
     points: [
       "Led end-to-end development of a scalable LMS, and deployed the platform to production using Vercel, DigitalOcean, and Cloudinary to serve 100+ users in the first month.",
@@ -83,7 +85,7 @@ export const experience: ExperienceItem[] = [
     company: "The LNM Institute of Information Technology",
     location: "Jaipur, Rajasthan · On-site · Part-time",
     period: "Jan 2025 — Apr 2025",
-    certificateUrl: "#",
+    certificateUrl: "https://drive.google.com/file/d/1HgHl1By6qTc3_Iuv1ZrqQAzQNyE_mePo/view?usp=sharing",
     tech: ["Internet of Things (IoT)", "Arduino IDE", "ESP8266", "Programming", "Circuit Design", "Mentoring"],
     points: [
       "Mentored over 80 students in IoT development by offering personalized support, which helped improve their lab performance.",
@@ -96,7 +98,7 @@ export const experience: ExperienceItem[] = [
     company: "CoreTeams Softech Pvt. Ltd",
     location: "Hybrid",
     period: "Jun 2024 — Jul 2024",
-    certificateUrl: "#",
+    certificateUrl: "https://drive.google.com/file/d/1el1QEdUkJTgC8ByHTc7WT8Ob4m7evQvC/view?usp=sharing",
     tech: ["React.js", "Tailwind CSS", "Multer", "MongoDB", "jsPDF"],
     points: [
       "Built responsive, accessible UIs for 3+ client-facing apps using React.js and Tailwind CSS, and integrated RESTful APIs in collaboration with backend teams.",

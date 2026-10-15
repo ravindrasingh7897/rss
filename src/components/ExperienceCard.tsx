@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Award, ChevronDown } from "lucide-react";
+import { Award, ChevronDown, Globe } from "lucide-react";
 import type { ExperienceItem } from "@/data/content";
 import { MagneticButton } from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 export function ExperienceCard({ item }: { item: ExperienceItem }) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = item.points.length > 2;
+  const isWebsite = item.linkType === "website";
+  const LinkIcon = isWebsite ? Globe : Award;
 
   return (
     <div className="group relative rounded-2xl border border-border bg-card/40 p-6">
@@ -28,11 +30,11 @@ export function ExperienceCard({ item }: { item: ExperienceItem }) {
           radius={50}
           className="group/cert shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 text-xs font-medium text-accent transition-[box-shadow,border-color,background-color,color] duration-200 hover:border-accent hover:bg-accent/20 hover:text-foreground hover:shadow-[0_0_20px_-4px_color-mix(in_srgb,var(--color-accent)_55%,transparent)]"
         >
-          <Award
+          <LinkIcon
             size={13}
             className="transition-transform duration-300 group-hover/cert:-rotate-12 group-hover/cert:scale-110"
           />
-          Certificate
+          {isWebsite ? "Website" : "Certificate"}
         </MagneticButton>
       </div>
 
