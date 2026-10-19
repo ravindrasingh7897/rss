@@ -8,6 +8,7 @@ import { ArrowDown, Copy } from "lucide-react";
 import { hero, site } from "@/data/content";
 import { AnimatedStat } from "@/components/AnimatedStat";
 import { useTypewriter } from "@/hooks/useTypewriter";
+import { useCyclingTypewriter } from "@/hooks/useCyclingTypewriter";
 import { useIsFinePointer } from "@/hooks/useIsFinePointer";
 import { useSessionFlag, setSessionFlag } from "@/hooks/useSessionFlag";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -26,6 +27,7 @@ export function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const introSeen = useSessionFlag("hero-intro-seen");
   const { displayed, done } = useTypewriter(hero.typewriter, 38, 600, introSeen);
+  const cyclingRole = useCyclingTypewriter(hero.roles);
   const [delayElapsed, setDelayElapsed] = useState(false);
   const pillsVisible = introSeen || delayElapsed;
   const [copied, setCopied] = useState(false);
@@ -175,16 +177,17 @@ export function Hero() {
           transition: "opacity 0.5s ease, transform 0.5s ease",
         }}
       >
-        <p className="text-sm tracking-wide text-muted-foreground">{hero.introLines[0]}</p>
-        <p className="text-base font-medium leading-snug text-foreground">{hero.introLines[1]}</p>
+        <p className="text-base font-medium leading-snug text-foreground">
+          {hero.introLines[0]} {cyclingRole}
+          <span className="typewriter-cursor" aria-hidden />
+        </p>
       </div>
 
       <div className="relative z-10 flex w-full items-center justify-between gap-8">
         <div className="max-w-xl">
           <p className="mb-3 hidden text-[clamp(14px,2.4vw,17px)] font-normal leading-[1.4] text-muted-foreground sm:mb-4 md:block">
-            {hero.introLines[0]}
-            <br />
-            {hero.introLines[1]}
+            {hero.introLines[0]} {cyclingRole}
+            <span className="typewriter-cursor" aria-hidden />
           </p>
 
           <div className="relative mb-5 text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] sm:mb-6">

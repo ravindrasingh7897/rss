@@ -22,7 +22,8 @@ export const nav = [
 ];
 
 export const hero = {
-  introLines: [`Hey, I'm ${site.name.split(" ")[0]} -`, "a Full-Stack Engineer building and shipping GenAI-powered applications."],
+  introLines: [`Hey, I'm ${site.name.split(" ")[0]} -`],
+  roles: ["a Full-Stack Engineer", "a GenAI Developer", "a Problem Solver", "a Clean Code Advocate"],
   typewriter: "Glad you stopped by. Good code tends to speak for itself - so, what should we build?",
   videoUrl: "/videos/hero-scrub.mp4",
   pills: [
@@ -32,7 +33,7 @@ export const hero = {
   ],
   stats: [
     { value: "200+", label: "DSA problems solved" },
-    { value: "97.7%ile", label: "JEE Mains 2022" },
+    { value: "97.7%ile", label: "JEE Mains" },
     { value: "4", label: "Companies & teams" },
     { value: "₹20L+", label: "Sponsorship raised" },
   ],
@@ -166,7 +167,7 @@ export const achievements: Achievement[] = [
   },
   {
     stat: "97.7%ile",
-    title: "JEE Mains 2022",
+    title: "JEE Mains",
     description: "Percentile secured in the JEE Mains 2022 entrance exam.",
     icon: "graduationCap",
   },
