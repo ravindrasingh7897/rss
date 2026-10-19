@@ -168,7 +168,7 @@ export const achievements: Achievement[] = [
   {
     stat: "97.7%ile",
     title: "JEE Mains",
-    description: "Percentile secured in the JEE Mains 2022 entrance exam.",
+    description: "Percentile secured in the JEE Mains entrance exam.",
     icon: "graduationCap",
   },
   {
